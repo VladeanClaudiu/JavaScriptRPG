@@ -1,9 +1,8 @@
 //diceRoll function
 function getDiceRollArray(rollCount) {
-  let diceArray = [];
-  for (let i = 0; i < rollCount; i++) {
-    diceArray.push(Math.floor(Math.random() * 6) + 1);
-  }
+  let diceArray = new Array(rollCount).fill(0).map(() => {
+    return Math.floor(Math.random() * 6) + 1;
+  });
   return diceArray;
 }
 
