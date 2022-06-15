@@ -33,11 +33,18 @@ const monster = {
   rollCount: 1,
 };
 
-function renderCharacter(data) {
-  const { elementId, name, avatar, health, rollCount } = data;
-  const rollHtml = getDiceRollHtml(rollCount);
+//constuctor function
+function Character(data) {
+  this.elementId = data.elementId;
+  this.name = data.name;
+  this.avatar = data.avatar;
+  this.health = data.health;
+  this.rollCount = data.rollCount;
+  this.getCharacterHtml = () => {
+    const { elementId, name, avatar, health, rollCount } = this;
+    const rollHtml = getDiceRollHtml(rollCount);
 
-  document.getElementById(elementId).innerHTML = `  
+    document.getElementById(elementId).innerHTML = `  
     <div class="character-card">
     <h4 class="name">${name}</h4>
     <img class="avatar" src=${avatar} />
@@ -45,7 +52,13 @@ function renderCharacter(data) {
     <div class="dice-container">${rollHtml}</div>
     </div>
         `;
+  };
 }
 
-renderCharacter(hero);
-renderCharacter(monster);
+//creating a new character
+const wizard = new Character(hero);
+const orc = new Character(monster);
+
+//rendering html for each character
+wizard.getCharacterHtml();
+orc.getCharacterHtml();
