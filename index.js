@@ -6,22 +6,22 @@ function getDiceRollArray(rollCount) {
   return diceArray;
 }
 
-//player object
-const hero = {
-  elementId: "hero",
-  name: "Wizard",
-  avatar: "images/wizard.png",
-  health: 100,
-  rollCount: 3,
-};
-
-//monster object
-const monster = {
-  elementId: "monster",
-  name: "Orc",
-  avatar: "images/orc.png",
-  health: 10,
-  rollCount: 1,
+//character data
+const characterData = {
+  hero: {
+    elementId: "hero",
+    name: "Wizard",
+    avatar: "images/wizard.png",
+    health: 100,
+    rollCount: 3,
+  },
+  monster: {
+    elementId: "monster",
+    name: "Orc",
+    avatar: "images/orc.png",
+    health: 10,
+    rollCount: 1,
+  },
 };
 
 //constuctor function
@@ -39,7 +39,7 @@ function Character(data) {
 
   //character html
   this.getCharacterHtml = () => {
-    const { elementId, name, avatar, health, rollCount } = this;
+    const { name, avatar, health, rollCount } = this;
     const rollHtml = this.getDiceRollHtml(rollCount);
 
     return `  
@@ -55,8 +55,16 @@ function Character(data) {
   };
 }
 
-const wizard = new Character(hero);
-document.getElementById("hero").innerHTML = wizard.getCharacterHtml();
+//create new instances af the characters
+const wizard = new Character(characterData.hero);
+const orc = new Character(characterData.monster);
 
-const orc = new Character(monster);
-document.getElementById("monster").innerHTML = orc.getCharacterHtml();
+//render html for the hero and the monster
+function render() {
+  document.getElementById(wizard.elementId).innerHTML =
+    wizard.getCharacterHtml();
+  document.getElementById(orc.elementId).innerHTML = orc.getCharacterHtml();
+}
+
+//calling the render function
+render();
