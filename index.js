@@ -1,3 +1,5 @@
+import characterData from "./data.js";
+
 //diceRoll function
 function getDiceRollArray(rollCount) {
   let diceArray = new Array(rollCount).fill(0).map(() => {
@@ -5,24 +7,6 @@ function getDiceRollArray(rollCount) {
   });
   return diceArray;
 }
-
-//character data
-const characterData = {
-  hero: {
-    elementId: "hero",
-    name: "Wizard",
-    avatar: "images/wizard.png",
-    health: 100,
-    rollCount: 3,
-  },
-  monster: {
-    elementId: "monster",
-    name: "Orc",
-    avatar: "images/orc.png",
-    health: 10,
-    rollCount: 1,
-  },
-};
 
 //constuctor function
 function Character(data) {
