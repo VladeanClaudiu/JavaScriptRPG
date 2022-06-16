@@ -35,11 +35,7 @@ const monster = {
 
 //constuctor function
 function Character(data) {
-  this.elementId = data.elementId;
-  this.name = data.name;
-  this.avatar = data.avatar;
-  this.health = data.health;
-  this.rollCount = data.rollCount;
+  Object.assign(this, data);
   this.getCharacterHtml = () => {
     const { elementId, name, avatar, health, rollCount } = this;
     const rollHtml = getDiceRollHtml(rollCount);
