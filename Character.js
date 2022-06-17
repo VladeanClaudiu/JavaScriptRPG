@@ -1,21 +1,19 @@
-import { getDiceRollArray } from "./utilities.js";
+import { getDiceRollArray, getDicePlaceholderHtml } from "./utilities.js";
 
-//constuctor function
 function Character(data) {
   Object.assign(this, data);
 
+  //get placeholder dice roll
+  this.rollArray = getDicePlaceholderHtml(this.rollCount).join("");
+
   //get Dice Roll function
   this.getDiceRollHtml = (rollCount) => {
-    return getDiceRollArray(rollCount)
-      .map((number) => {
-        return `<div class="dice">${number}</div>`;
-      })
-      .join("");
+    this.currentRollScore = getDiceRollArray(rollCount);
   };
 
   //character html
   this.getCharacterHtml = () => {
-    const { name, avatar, health, rollCount } = this;
+    const { name, avatar, health, rollCount, rollArray } = this;
     const rollHtml = this.getDiceRollHtml(rollCount);
 
     return `  
@@ -24,7 +22,7 @@ function Character(data) {
         <img class="avatar" src=${avatar} />
         <p class="health">health: <b> ${health} </b></p>
         <div class="dice-container">
-          ${rollHtml}
+          ${rollArray}
         </div>
       </div>
           `;

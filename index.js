@@ -7,6 +7,14 @@ function render() {
   document.getElementById("monster").innerHTML = orc.getCharacterHtml();
 }
 
+//attack function
+function attack() {
+  render();
+}
+
+//event listner for the attack
+document.getElementById("attack-button").addEventListener("click", attack);
+
 //create new instances af the characters
 const wizard = new Char(characterData.hero);
 const orc = new Char(characterData.monster);
