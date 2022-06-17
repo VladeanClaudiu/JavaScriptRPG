@@ -19,7 +19,6 @@ function Character(data) {
   //character html
   this.getCharacterHtml = () => {
     const { name, avatar, health, rollCount, rollArray } = this;
-    const rollHtml = this.getDiceRollHtml(rollCount);
 
     return `  
       <div class="character-card">
