@@ -7,8 +7,13 @@ function Character(data) {
   this.rollArray = getDicePlaceholderHtml(this.rollCount).join("");
 
   //get Dice Roll function
-  this.getDiceRollHtml = (rollCount) => {
-    this.currentRollScore = getDiceRollArray(rollCount);
+  this.getDiceRollHtml = () => {
+    this.currentRollScore = getDiceRollArray(this.rollCount);
+    this.rollArray = this.currentRollScore
+      .map((num) => {
+        return `<div class="dice">${num}</div>`;
+      })
+      .join("");
   };
 
   //character html

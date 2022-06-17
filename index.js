@@ -9,6 +9,8 @@ function render() {
 
 //attack function
 function attack() {
+  wizard.getDiceRollHtml();
+  orc.getDiceRollHtml();
   render();
 }
 
