@@ -11,6 +11,9 @@ function render() {
 function attack() {
   wizard.getDiceRollHtml();
   orc.getDiceRollHtml();
+  wizard.takeDamage();
+  orc.takeDamage();
+
   render();
 }
 

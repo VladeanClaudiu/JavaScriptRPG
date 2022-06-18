@@ -3,6 +3,11 @@ import { getDiceRollArray, getDicePlaceholderHtml } from "./utilities.js";
 function Character(data) {
   Object.assign(this, data);
 
+  //take damage method
+  this.takeDamage = () => {
+    console.log(`${this.name} is damaged`)
+  }
+
   //get placeholder dice roll
   this.rollArray = getDicePlaceholderHtml(this.rollCount).join("");
 
