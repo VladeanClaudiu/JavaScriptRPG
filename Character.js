@@ -4,7 +4,8 @@ function Character(data) {
   Object.assign(this, data);
 
   //take damage method
-  this.takeDamage = () => {
+  this.takeDamage = (attackScoreArray) => {
+    console.log(`${attackScoreArray}`)
     console.log(`${this.name} is damaged`)
   }
 
