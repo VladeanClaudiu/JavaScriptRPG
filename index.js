@@ -13,8 +13,15 @@ function attack() {
   orc.getDiceRollHtml();
   wizard.takeDamage(orc.currentRollScore);
   orc.takeDamage(wizard.currentRollScore);
-
+  if(orc.dead || wizard.dead){
+    endGame();
+  }
   render();
+}
+
+//endgame function
+function endGame(){
+  console.log('the game is over')
 }
 
 //event listner for the attack

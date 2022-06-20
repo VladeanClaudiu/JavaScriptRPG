@@ -5,8 +5,19 @@ function Character(data) {
 
   //take damage method
   this.takeDamage = (attackScoreArray) => {
+    const totalAttackScore = attackScoreArray.reduce((total, currentEl) => {
+      return total + currentEl;
+    })
 
-    console.log(`${this.name} is damaged for ${attackScoreArray}`)
+    //reducing character health
+    this.health -= totalAttackScore;
+
+    //sopping character health from going below 0
+    if(this.health <= 0){
+      this.health = 0;
+      this.dead = true;
+      console.log(this.dead)
+    }
   }
 
   //get placeholder dice roll
