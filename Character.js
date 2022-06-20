@@ -5,8 +5,8 @@ function Character(data) {
 
   //take damage method
   this.takeDamage = (attackScoreArray) => {
-    console.log(`${attackScoreArray}`)
-    console.log(`${this.name} is damaged`)
+
+    console.log(`${this.name} is damaged for ${attackScoreArray}`)
   }
 
   //get placeholder dice roll
