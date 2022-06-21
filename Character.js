@@ -4,7 +4,7 @@ function Character(data) {
   Object.assign(this, data);
 
   //take damage method
-  this.takeDamage = (attackScoreArray) => {
+  this.takeDamage = attackScoreArray => {
     const totalAttackScore = attackScoreArray.reduce((total, currentEl) => {
       return total + currentEl;
     })
@@ -26,16 +26,13 @@ function Character(data) {
   //get Dice Roll function
   this.getDiceRollHtml = () => {
     this.currentRollScore = getDiceRollArray(this.rollCount);
-    this.rollArray = this.currentRollScore
-      .map((num) => {
-        return `<div class="dice">${num}</div>`;
-      })
-      .join("");
+    this.rollArray = this.currentRollScore.map( num => 
+      `<div class="dice">${ num }</div>`).join("");
   };
 
   //character html
   this.getCharacterHtml = () => {
-    const { name, avatar, health, rollCount, rollArray } = this;
+    const { name, avatar, health, rollArray } = this;
 
     return `  
       <div class="character-card">
