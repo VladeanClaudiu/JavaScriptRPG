@@ -6,6 +6,12 @@ function Character(data) {
   //store the max health of the character 
   this.maxHealth = this.health;
 
+  //healthbar method
+  this.getHealthBarHtml = () => {
+    const percentage = Math.floor(getPercentace(this.maxHealth, this.health));
+    console.log(percentage)
+  }
+
   //take damage method
   this.takeDamage = attackScoreArray => {
     const totalAttackScore = attackScoreArray.reduce((total, currentEl) => {
@@ -22,9 +28,7 @@ function Character(data) {
       console.log(this.dead)
     }
 
-    //testing max health
-    // let percentage = Math.floor(getPercentace(this.maxHealth, this.health));
-    // console.log(`${percentage} %`)
+    
   }
 
   //get placeholder dice roll
@@ -40,7 +44,7 @@ function Character(data) {
   //character html
   this.getCharacterHtml = () => {
     const { name, avatar, health, rollArray } = this;
-
+    const healthbar = this.getHealthBarHtml();
     return `  
       <div class="character-card">
         <h4 class="name">${name}</h4>
