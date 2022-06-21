@@ -9,12 +9,11 @@ function Character(data) {
   //healthbar method
   this.getHealthBarHtml = () => {
     const percentage = Math.floor(getPercentace(this.maxHealth, this.health));
-    let danger = '';
-    if (percentage < 25){
-      danger = 'danger';
-    }    
+   
+   
+   
     return `<div class="health-bar-outer">
-                <div class="health-bar-inner ${danger} " 
+                <div class="health-bar-inner ${ percentage < 26 ? 'danger' : '' } " 
                     style="width: ${percentage}%;">
                 </div>
             </div>`
@@ -58,7 +57,8 @@ function Character(data) {
       <div class="character-card">
         <h4 class="name">${name}</h4>
         <img class="avatar" src=${avatar} />
-        <p class="health">health: <b> ${health} </b> ${healthBar}</p>
+        <p class="health">health: <b> ${health} </b></p>
+        ${healthBar}
         <div class="dice-container">
           ${rollArray}
         </div>
