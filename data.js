@@ -3,14 +3,14 @@ const characterData = {
   hero: {
     name: "Wizard",
     avatar: "images/wizard.png",
-    health: 50,
+    health: 60,
     rollCount: 3,
     currentRollScore: [],
   },
   monster: {
     name: "Orc",
     avatar: "images/orc.png",
-    health: 20,
+    health: 40,
     rollCount: 1,
     currentRollScore: [],
   },

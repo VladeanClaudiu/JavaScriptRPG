@@ -3,6 +3,9 @@ import { getDiceRollArray, getDicePlaceholderHtml } from "./utilities.js";
 function Character(data) {
   Object.assign(this, data);
 
+  //store the max health of the character 
+  this.maxHealth = this.health;
+
   //take damage method
   this.takeDamage = attackScoreArray => {
     const totalAttackScore = attackScoreArray.reduce((total, currentEl) => {
@@ -18,6 +21,10 @@ function Character(data) {
       this.dead = true;
       console.log(this.dead)
     }
+
+    //testing max health
+    // let percentage = Math.floor(getPercentace(this.maxHealth, this.health));
+    // console.log(`${percentage} %`)
   }
 
   //get placeholder dice roll
@@ -46,5 +53,8 @@ function Character(data) {
           `;
   };
 }
+
+const getPercentace = (remainingHeath, maximumHealth) =>
+                       (maximumHealth*100)/remainingHeath;
 
 export default Character;
