@@ -7,25 +7,23 @@ let monsterArray = ['orc', 'demon', 'goblin'];
 //new monster function
 function getNewMonster() {
   const nextMonsterData = characterData[monsterArray.shift()];
-  return monsterArray.lenght > 0 ? new Char(nextMonsterData) : {};
+  return nextMonsterData ? new Char(nextMonsterData) : {};
 }
-
-getNewMonster()
 
 
 //render html for the hero and the monster
 function render() {
   document.getElementById("hero").innerHTML = wizard.getCharacterHtml();
-  document.getElementById("monster").innerHTML = orc.getCharacterHtml();
+  document.getElementById("monster").innerHTML = monster.getCharacterHtml();
 }
 
 //attack function
 function attack() {
   wizard.getDiceRollHtml();
-  orc.getDiceRollHtml();
-  wizard.takeDamage(orc.currentRollScore);
-  orc.takeDamage(wizard.currentRollScore);
-  if(orc.dead || wizard.dead){
+  monster.getDiceRollHtml();
+  wizard.takeDamage(monster.currentRollScore);
+  monster.takeDamage(wizard.currentRollScore);
+  if(monster.dead || wizard.dead){
     endGame();
   }
   render();
@@ -33,11 +31,11 @@ function attack() {
 
 //endgame function
 function endGame(){
-  const endEmoji = wizard.health === 0 && orc.health === 0 ? "☠️"
+  const endEmoji = wizard.health === 0 && monster.health === 0 ? "☠️"
                   :wizard.health === 0 ? "☠️"
                   : "🔮"
 
-  const endMessage =  wizard.health === 0 && orc.health === 0 ? "There are no victors - all creatures have perished!!!"
+  const endMessage =  wizard.health === 0 && monster.health === 0 ? "There are no victors - all creatures have perished!!!"
   : wizard.health === 0 ? "The Orc is Victorious!!"
   : "The wizard Wins!"
 
