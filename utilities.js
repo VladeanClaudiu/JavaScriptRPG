@@ -14,4 +14,8 @@ function getDiceRollArray(rollCount) {
   return diceArray;
 }
 
-export { getDiceRollArray, getDicePlaceholderHtml };
+//get percentage function
+const getPercentace = (remainingHeath, maximumHealth) =>
+                       (maximumHealth*100)/remainingHeath;
+
+export { getDiceRollArray, getDicePlaceholderHtml, getPercentace };
