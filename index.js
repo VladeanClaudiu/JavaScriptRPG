@@ -1,6 +1,18 @@
 import characterData from "./data.js";
 import Char from "./Character.js";
 
+//array of monsters
+let monsterArray = ['orc', 'demon', 'goblin'];
+
+//new monster function
+function getNewMonster() {
+  const nextMonsterData = characterData[monsterArray.shift()];
+  return monsterArray.lenght > 0 ? new Char(nextMonsterData) : {};
+}
+
+getNewMonster()
+
+
 //render html for the hero and the monster
 function render() {
   document.getElementById("hero").innerHTML = wizard.getCharacterHtml();
@@ -41,7 +53,7 @@ document.getElementById("attack-button").addEventListener("click", attack);
 
 //create new instances af the characters
 const wizard = new Char(characterData.hero);
-const orc = new Char(characterData.monster);
+let monster = getNewMonster();
 
 //rendering the characters
 render();
