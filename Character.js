@@ -7,12 +7,12 @@ function Character(data) {
   this.maxHealth = this.health;
 
   //get placeholder dice roll
-  this.rollArray = getDicePlaceholderHtml(this.rollCount);
+  this.rollHtml = getDicePlaceholderHtml(this.rollCount);
 
     //get Dice Roll function
-    this.getDiceRollHtml = () => {
+    this.setDiceRollHtml = () => {
       this.currentRollScore = getDiceRollArray(this.rollCount);
-      this.rollArray = this.currentRollScore.map( num => 
+      this.rollHtml = this.currentRollScore.map( num => 
         `<div class="dice">${ num }</div>`).join('');
     };
 
@@ -51,7 +51,7 @@ function Character(data) {
 
   //character html
   this.getCharacterHtml = () => {
-    const { name, avatar, health, rollArray, rollCount } = this;
+    const { name, avatar, health, rollHtml } = this;
     const healthBar = this.getHealthBarHtml();
     return `  
       <div class="character-card">
@@ -60,7 +60,7 @@ function Character(data) {
         <p class="health">health: <b> ${health} </b></p>
         ${healthBar}
         <div class="dice-container">
-          ${rollArray}
+          ${rollHtml}
         </div>
       </div>
           `;
