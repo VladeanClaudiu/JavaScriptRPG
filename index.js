@@ -4,6 +4,9 @@ import Char from "./Character.js";
 //array of monsters
 let monsterArray = ['orc', 'demon', 'goblin'];
 
+//timeout variable
+let isWaiting = false;
+
 //new monster function
 function getNewMonster() {
   const nextMonsterData = characterData[monsterArray.shift()];
@@ -19,20 +22,28 @@ function render() {
 
 //attack function
 function attack() {
-  wizard.getDiceRollHtml();
-  monster.getDiceRollHtml();
-  wizard.takeDamage(monster.currentRollScore);
-  monster.takeDamage(wizard.currentRollScore);
-  render();
-
-  if(wizard.dead){
-    endGame();
-  }else if(monster.dead){
-    if(monsterArray.length > 0){
-      monster = getNewMonster();
-      render();
-    }else{
-      endGame();
+  if(isWaiting === false){
+    wizard.getDiceRollHtml();
+    monster.getDiceRollHtml();
+    wizard.takeDamage(monster.currentRollScore);
+    monster.takeDamage(wizard.currentRollScore);
+    render();
+  
+    if(wizard.dead){
+      isWaiting = true;
+      setTimeout(() => { endGame(); isWaiting = false }, 1500);
+    }else if(monster.dead){
+      if(monsterArray.length > 0){
+        isWaiting = true;
+        setTimeout(() => {
+          monster = getNewMonster();
+          render();
+          isWaiting = false;
+        }, 1500)
+      }else{
+        isWaiting = true;
+        setTimeout(() => { endGame(); isWaiting = false}, 1500);
+      }
     }
   }
   
@@ -56,6 +67,9 @@ function endGame(){
 }
 
 //event listner for the attack
+if(isWaiting = false){
+
+}
 document.getElementById("attack-button").addEventListener("click", attack);
 
 //create new instances af the characters
