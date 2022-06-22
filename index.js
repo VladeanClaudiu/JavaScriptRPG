@@ -22,9 +22,12 @@ function render() {
 
 //attack function
 function attack() {
+  //only runs code if the timouts are not waiting
   if(isWaiting === false){
-    wizard.getDiceRollHtml();
-    monster.getDiceRollHtml();
+    wizard.set
+    
+    ();
+    monster.setDiceRollHtml();
     wizard.takeDamage(monster.currentRollScore);
     monster.takeDamage(wizard.currentRollScore);
     render();
