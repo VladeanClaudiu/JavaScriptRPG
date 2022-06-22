@@ -1,11 +1,3 @@
-//dicrRoll placeholder function
-function getDicePlaceholderHtml(rollCount) {
-  let placeholderDiceArray = new Array(rollCount).fill(0).map(() => {
-    return `<div class="placeholder-dice"></div>`;
-  });
-  return placeholderDiceArray;
-}
-
 //diceRoll function
 function getDiceRollArray(rollCount) {
   let diceArray = new Array(rollCount).fill(0).map(() => {
@@ -17,5 +9,13 @@ function getDiceRollArray(rollCount) {
 //get percentage function
 const getPercentace = (remainingHeath, maximumHealth) =>
                        (maximumHealth*100)/remainingHeath;
+
+//dicrRoll placeholder function
+function getDicePlaceholderHtml(rollCount) {
+  return new Array(rollCount).fill(0).map(() => {
+    return `<div class="placeholder-dice"></div>`
+  }).join("")
+}
+
 
 export { getDiceRollArray, getDicePlaceholderHtml, getPercentace };

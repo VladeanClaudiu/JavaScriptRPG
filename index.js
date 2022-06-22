@@ -23,10 +23,19 @@ function attack() {
   monster.getDiceRollHtml();
   wizard.takeDamage(monster.currentRollScore);
   monster.takeDamage(wizard.currentRollScore);
-  if(monster.dead || wizard.dead){
-    endGame();
-  }
   render();
+
+  if(wizard.dead){
+    endGame();
+  }else if(monster.dead){
+    if(monsterArray.length > 0){
+      monster = getNewMonster();
+      render();
+    }else{
+      endGame();
+    }
+  }
+  
 }
 
 //endgame function
@@ -36,7 +45,7 @@ function endGame(){
                   : "🔮"
 
   const endMessage =  wizard.health === 0 && monster.health === 0 ? "There are no victors - all creatures have perished!!!"
-  : wizard.health === 0 ? "The Orc is Victorious!!"
+  : wizard.health === 0 ? `The ${monster.name} is Victorious!!`
   : "The wizard Wins!"
 
   document.querySelector('body').innerHTML = `<div class="end-game">

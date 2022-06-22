@@ -6,20 +6,17 @@ function Character(data) {
   //store the max health of the character 
   this.maxHealth = this.health;
 
-  //healthbar method
-  this.getHealthBarHtml = () => {
-    const percentage = Math.floor(getPercentace(this.maxHealth, this.health));
-   
-   
-   
-    return `<div class="health-bar-outer">
-                <div class="health-bar-inner ${ percentage < 26 ? 'danger' : '' } " 
-                    style="width: ${percentage}%;">
-                </div>
-            </div>`
+  //get placeholder dice roll
+  this.rollArray = getDicePlaceholderHtml(this.rollCount);
 
-  }
+    //get Dice Roll function
+    this.getDiceRollHtml = () => {
+      this.currentRollScore = getDiceRollArray(this.rollCount);
+      this.rollArray = this.currentRollScore.map( num => 
+        `<div class="dice">${ num }</div>`).join('');
+    };
 
+    
   //take damage method
   this.takeDamage = attackScoreArray => {
     const totalAttackScore = attackScoreArray.reduce((total, currentEl) => {
@@ -39,19 +36,22 @@ function Character(data) {
     
   }
 
-  //get placeholder dice roll
-  this.rollArray = getDicePlaceholderHtml(this.rollCount).join("");
+  //healthbar method
+  this.getHealthBarHtml = () => {
+    const percentage = Math.floor(getPercentace(this.maxHealth, this.health));
+   
+    return `<div class="health-bar-outer">
+                <div class="health-bar-inner ${ percentage < 26 ? 'danger' : '' } " 
+                    style="width: ${percentage}%;">
+                </div>
+            </div>`
 
-  //get Dice Roll function
-  this.getDiceRollHtml = () => {
-    this.currentRollScore = getDiceRollArray(this.rollCount);
-    this.rollArray = this.currentRollScore.map( num => 
-      `<div class="dice">${ num }</div>`).join("");
-  };
+  }
+
 
   //character html
   this.getCharacterHtml = () => {
-    const { name, avatar, health, rollArray } = this;
+    const { name, avatar, health, rollArray, rollCount } = this;
     const healthBar = this.getHealthBarHtml();
     return `  
       <div class="character-card">
