@@ -137,7 +137,6 @@ main {
 
 @media(min-width:550px){
     .dice-container {
-        height: 30%;
         border-bottom-left-radius: 3px;
         border-bottom-right-radius: 3px;
     }
